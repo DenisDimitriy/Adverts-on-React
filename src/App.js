@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import About from './About'
+import Advert from './Advert'
 import Home from './Home'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 /** Router from https://reacttraining.com/react-router/web/example/basic */
 
@@ -10,19 +10,8 @@ export default class App extends Component{
         return(
             <Router>
                 <div>
-                <ul>
-                    <li>
-                    <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                    <Link to="/about">About</Link>
-                    </li>
-                </ul>
-
-                <hr />
-
-                <Route exact path="/" component={Home} />
-                <Route path="/about" component={About} />
+                    <Route exact path="/" component={Home} />
+                    <Route path="/advert" component={Advert} />
                 </div>
             </Router>
         )
