@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import AdvertBlock from './AdvertBlock'
-import adverts from '../adverts'
 
 export default class AdvertList extends Component {
     render() {
+        const advertsJSON = localStorage.getItem("adverts");
+        const adverts = JSON.parse(advertsJSON);
+
         const advertArray = adverts.map ((advert, index) =>
             <div key = {advert.id}>
                 <AdvertBlock advert = {advert} />
@@ -11,7 +13,7 @@ export default class AdvertList extends Component {
         )
         return (
             <div>
-                <h3>Список объявлений</h3>
+                <h3><i>Список объявлений</i></h3>
                 {advertArray}
             </div>
         )

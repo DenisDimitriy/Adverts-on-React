@@ -4,7 +4,9 @@ export default class AdvertBlock extends Component {
   render() {
     return (
       <div>
-        <h2>{this.props.advert.title}</h2>
+        <h3>{this.props.advert.title}</h3>
+        <div><i>{this.props.advert.author}</i></div>
+        <div><i>{this.props.advert.date}</i></div>
         <div>{this.props.advert.text}</div>
       </div>
     )

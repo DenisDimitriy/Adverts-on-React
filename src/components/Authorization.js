@@ -8,15 +8,39 @@ export default class Authorization extends Component {
         <form>
             <label>
                 User name: <br/>
-                <input type="text" />
+                <input type="text" ref = { (userNameInput) => this.userNameInput = userNameInput} />
             </label><br/>
             <label>
                 Password: <br/>
-                <input type="text" />
+                <input type="text" ref = { (passwordInput) => this.passwordInput = passwordInput} />
             </label> <br/>
-            <input type="submit" value="Submit" />
+            <input type="submit" onClick={this.handlerOnSubmit}/>
         </form>
       </div>
     )
+  }
+
+  handlerOnSubmit = (e) => {
+    e.preventDefault();
+    var userName = this.userNameInput.value;
+    var userPassword = this.passwordInput.value;
+    /**1 Проверка пользователя
+     * если есть такой пользователь, проверить пароль
+     * -если совпадает, то авторизовать
+     * -если не совпадает, сообщение "пользователь уже есть, не верный пароль"
+     * если нет  такого пользователя, зарегестрировать и авторизовать
+     * 2 Вызов рендера Home
+     * 
+     * Авторизация - занесение в localstorage userCurrent имени текущего пользователя
+     * Регистрация - занесение в localstorage usersList обїекта с данными {пользователь, пароль}
+     */
+    var user = {
+      name: userName,
+      password: userPassword
+    }
+
+    localStorage.setItem("userCurrent", JSON.stringify(user));
+    this.props.onAuthorizationChange();
+    console.log("User: " + this.userNameInput.value + "\nPassword: " + this.passwordInput.value);
   }
 }
