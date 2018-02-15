@@ -7,14 +7,14 @@ export default class Authorization extends Component {
         <h3>Авторизация</h3>
         <form>
             <label>
-                User name: <br/>
+                Логин: <br/>
                 <input type="text" ref = { (userNameInput) => this.userNameInput = userNameInput} />
             </label><br/>
             <label>
-                Password: <br/>
+                Пароль: <br/>
                 <input type="text" ref = { (passwordInput) => this.passwordInput = passwordInput} />
             </label> <br/>
-            <input type="submit" onClick={this.handlerOnSubmit}/>
+            <input type="submit" onClick={this.handlerOnSubmit} value="Войти"/>
         </form>
       </div>
     )
@@ -40,7 +40,6 @@ export default class Authorization extends Component {
     }
 
     localStorage.setItem("userCurrent", JSON.stringify(user));
-    this.props.onAuthorizationChange();
-    console.log("User: " + this.userNameInput.value + "\nPassword: " + this.passwordInput.value);
+    this.props.onAuthorizationChanged();
   }
 }

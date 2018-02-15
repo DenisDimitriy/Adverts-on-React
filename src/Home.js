@@ -4,33 +4,29 @@ import UserPanel from './components/UserPanel'
 import AdvertList from './components/AdvertList'
 
 export default class Home extends Component {
- /*
-  state = {
-    userAuthorized: false
-  }
- */
   constructor (props) {
     super(props)
+    var userCurrent = JSON.parse(localStorage.getItem("userCurrent"));
     this.state = {
-      userAuthorized: false
+      userAuthorized: userCurrent ? userCurrent.name : false
     }
 }
 
-  handlerAuthorization = () => {
+  handlerAuthorizationChanged = () => {
     var userCurrent = JSON.parse(localStorage.getItem("userCurrent"));
     this.setState ({
-      userAuthorized: userCurrent.name
+      userAuthorized: userCurrent ? userCurrent.name : false
     })
   }
 
   render() {
     var userBlock = this.state.userAuthorized ?
-      <UserPanel /> : 
+      <UserPanel 
+        onAuthorizationChanged = {this.handlerAuthorizationChanged.bind(this)}
+      /> : 
       <Authorization 
-        onAuthorizationChange = {this.handlerAuthorization.bind(this)}
+        onAuthorizationChanged = {this.handlerAuthorizationChanged.bind(this)}
       />
-
-    var advertListBlock = <AdvertList />
 
     return (
       <div>
@@ -38,7 +34,7 @@ export default class Home extends Component {
         <hr/>
         {userBlock}
         <hr/>
-        {advertListBlock}
+        <AdvertList userAuthorized={this.state.userAuthorized} />
       </div>
     )
   }

@@ -8,13 +8,13 @@ export default class AdvertList extends Component {
 
         const advertArray = adverts.map ((advert, index) =>
             <div key = {advert.id}>
-                <AdvertBlock advert = {advert} />
+                <AdvertBlock advert = {advert} userAuthorized = {this.props.userAuthorized} />
             </div>
         )
         return (
             <div>
                 <h3><i>Список объявлений</i></h3>
-                {advertArray}
+                {advertArray}                
             </div>
         )
     }
