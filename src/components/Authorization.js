@@ -14,13 +14,14 @@ export default class Authorization extends Component {
                 Пароль: <br/>
                 <input type="text" ref = { (passwordInput) => this.passwordInput = passwordInput} />
             </label> <br/>
-            <input type="submit" onClick={this.handlerOnSubmit} value="Войти"/>
+            <input type="submit" onClick={this.handlerSubmit} value="Войти"/>
         </form>
       </div>
     )
   }
 
-  handlerOnSubmit = (e) => {
+  
+  handlerSubmit = (e) => {
     e.preventDefault();
     var userName = this.userNameInput.value;
     var userPassword = this.passwordInput.value;

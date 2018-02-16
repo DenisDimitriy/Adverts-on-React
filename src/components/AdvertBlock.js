@@ -2,26 +2,42 @@ import React, { Component } from 'react'
 
 export default class AdvertBlock extends Component {
   render() {
+    var title = this.props.advert.title
+    var author = this.props.advert.author
+
+    var date = new Date(Date.parse(this.props.advert.date))
+    var options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      weekday: 'long',
+      timezone: 'UTC',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric'
+    };
+    var dateString = date.toLocaleString("ru", options)
+
+    var text = this.props.advert.text
+
     var adv
     if(this.props.advert.author === this.props.userAuthorized) {
       adv = 
       <div>
-        <h3>{this.props.advert.title}<button>Kill</button></h3>
-        <div><i>{this.props.advert.author}</i></div>
-        <div><i>{this.props.advert.date}</i></div>
-        <div>{this.props.advert.text}</div>
+        <h3>{title}<button>Kill</button></h3>
+        <div><i>{author}</i></div>
+        <div><i>{dateString}</i></div>
+        <div>{text}</div>
       </div>
     } else {
       adv = 
       <div>
-        <h3>{this.props.advert.title}</h3>
-        <div><i>{this.props.advert.author}</i></div>
-        <div><i>{this.props.advert.date}</i></div>
-        <div>{this.props.advert.text}</div>
+        <h3>{title}</h3>
+        <div><i>{author}</i></div>
+        <div><i>{dateString}</i></div>
+        <div>{text}</div>
       </div>
     }
-    return (
-      adv
-    )
+    return (adv)
   }
 }
