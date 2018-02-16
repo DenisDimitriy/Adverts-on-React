@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 export default class Create extends Component {
   render() {
+    //Если никто не авторизован, выдавать форму авторизации
     return (
       <div>
         <h2>Создать статью</h2>
@@ -29,8 +30,11 @@ export default class Create extends Component {
     e.preventDefault();
     var title = this.titleInput.value
     var text = this.textInput.value
+
     var dateNow = new Date();
     var dateNowISO = dateNow.toISOString()
+    //var date = new Date(dateNowISO)
+
     var author = JSON.parse(localStorage.getItem("userCurrent")).name
     var id = "1357"
 
@@ -55,6 +59,5 @@ export default class Create extends Component {
     
     var advertsString = JSON.stringify(adverts);
     localStorage.setItem("adverts", advertsString);
-    //var date = new Date(dateNowISO)
   }
 }
