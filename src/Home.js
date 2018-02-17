@@ -20,9 +20,7 @@ export default class Home extends Component {
   }
 
   deleteAdvert = () => {
-
-
-    var idDeleted = this.props.match.params.idDeleted
+    var idDeleted = this.props.match.params.id
 
     var adverts
     const advertsJSON = localStorage.getItem("adverts");
@@ -46,9 +44,11 @@ export default class Home extends Component {
   }
 
   render() {
-    console.log(this.props.match.params.idDeleted)
-    this.deleteAdvert()
-    
+    if(this.props.match.params.option === "delete"){
+      console.log("delete")
+      this.deleteAdvert()
+    }
+
     var userBlock = this.state.userAuthorized ?
       <UserPanel 
         onAuthorizationChanged = {this.handlerAuthorizationChanged.bind(this)}

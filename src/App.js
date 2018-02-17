@@ -22,13 +22,19 @@ export default class App extends Component{
         return(
             <Router>
                 <div>
-                    <Redirect from='/delete/$:idDeleted' to='/'/>
                     <Route exact path="/" component={Home} />
-                    <Route path="/create" component={Create} />
+                    <Route path="/:option/$:id" component={Home} />
+                    <Route path="/edit" component={Create} />
                     <Route path="/$:id" component={View} />
-                    <Route path="/delete/$:idDeleted" component={Home} />
+                    <Redirect from='/delete/$' to='/'/>
+                    <Redirect from='/:option/$:id' to='/'/>
                 </div>
             </Router>
         )
     }
 }
+
+/*
+<Redirect from='/delete/$:idDeleted' to='/'/>
+<Route path="/delete/$:idDeleted" component={Home} />
+*/

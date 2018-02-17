@@ -30,7 +30,7 @@ export default class AdvertBlock extends Component {
           {title}
         </h3>
         <div>
-          <Link to={"/delete/$" + id}>Kill</Link> <br/>
+          <Link to={"/"} onClick={this.handlerDelete}>Kill</Link> <br/>
           <Link to={"/$" + id}>Просмотреть</Link>
         </div>
         <div><i>{author}</i></div>
@@ -48,4 +48,31 @@ export default class AdvertBlock extends Component {
     }
     return (adv)
   }
+
+
+  handlerDelete = () => {
+    var idDeleted = this.props.advert.id
+
+    var adverts
+    const advertsJSON = localStorage.getItem("adverts");
+
+    if(advertsJSON == null) {
+      return
+    } else {
+      adverts = JSON.parse(localStorage.getItem("adverts"))
+    }
+    
+    for(var i=0; i<adverts.length; i++){
+      if(adverts[i].id === +idDeleted){
+        adverts.splice(i,1)
+        break
+      }
+    }
+
+    var advertsString = JSON.stringify(adverts);
+    localStorage.setItem("adverts", advertsString);
+    
+  }
+
+
 }
