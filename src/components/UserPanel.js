@@ -9,25 +9,14 @@ export default class UserPanel extends Component {
         <div>
             <div>{JSON.parse(localStorage.getItem("userCurrent")).name}</div>
             <Link to="/create">Create Ad</Link> <br/>
-            <button onClick={this.handlerLogout}>Выйти</button>
+            <Link to="/" onClick={this.handlerLogout}>Выйти</Link>
         </div>
       </div>
     )
   }
 
-  handlerLogout = (e) => {
-    e.preventDefault();
-    
+  handlerLogout = (e) => {    
     localStorage.removeItem("userCurrent");
     this.props.onAuthorizationChanged();
   }
-  
-  /*
-  handlerCreate = (e) => {
-    e.preventDefault();
-    
-    localStorage.removeItem("userCurrent");
-    this.props.onAuthorizationChanged();
-  }
-  */
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Home from './Home'
 import Create from './Create'
 import View from './View'
@@ -22,6 +22,7 @@ export default class App extends Component{
         return(
             <Router>
                 <div>
+                    <Redirect from='/delete/$:idDeleted' to='/'/>
                     <Route exact path="/" component={Home} />
                     <Route path="/create" component={Create} />
                     <Route path="/$:id" component={View} />
@@ -31,4 +32,3 @@ export default class App extends Component{
         )
     }
 }
-

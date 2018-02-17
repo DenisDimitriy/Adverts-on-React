@@ -46,7 +46,7 @@ export default class Home extends Component {
   }
 
   render() {
-    
+    console.log(this.props.match.params.idDeleted)
     this.deleteAdvert()
     
     var userBlock = this.state.userAuthorized ?
