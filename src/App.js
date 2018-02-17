@@ -25,6 +25,7 @@ export default class App extends Component{
                     <Route exact path="/" component={Home} />
                     <Route path="/create" component={Create} />
                     <Route path="/$:id" component={View} />
+                    <Route path="/delete/$:idDeleted" component={Home} />
                 </div>
             </Router>
         )

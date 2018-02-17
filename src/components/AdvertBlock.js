@@ -28,9 +28,11 @@ export default class AdvertBlock extends Component {
       <div>
         <h3>
           {title}
-          <button>Kill</button>
-          <Link to={"/$" + id}>Просмотреть</Link> <br/>
         </h3>
+        <div>
+          <Link to={"/delete/$" + id}>Kill</Link> <br/>
+          <Link to={"/$" + id}>Просмотреть</Link>
+        </div>
         <div><i>{author}</i></div>
         <div><i>{dateString}</i></div>
         <div>{text}</div>

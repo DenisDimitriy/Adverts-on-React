@@ -24,6 +24,7 @@ export default class Create extends Component {
             <div><i>{adverts[i].date}</i></div>
             <div>{adverts[i].text}</div>
           </div>
+        break
       }
     }
 

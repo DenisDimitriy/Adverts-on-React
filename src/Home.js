@@ -10,8 +10,8 @@ export default class Home extends Component {
     this.state = {
       userAuthorized: userCurrent ? userCurrent.name : false
     }
-}
-
+  }
+  
   handlerAuthorizationChanged = () => {
     var userCurrent = JSON.parse(localStorage.getItem("userCurrent"));
     this.setState ({
@@ -19,7 +19,36 @@ export default class Home extends Component {
     })
   }
 
+  deleteAdvert = () => {
+
+
+    var idDeleted = this.props.match.params.idDeleted
+
+    var adverts
+    const advertsJSON = localStorage.getItem("adverts");
+
+    if(advertsJSON == null) {
+      return
+    } else {
+      adverts = JSON.parse(localStorage.getItem("adverts"))
+    }
+    
+    for(var i=0; i<adverts.length; i++){
+      if(adverts[i].id === +idDeleted && adverts[i].author === this.state.userAuthorized){
+        adverts.splice(i,1)
+        break
+      }
+    }
+
+    var advertsString = JSON.stringify(adverts);
+    localStorage.setItem("adverts", advertsString);
+    
+  }
+
   render() {
+    
+    this.deleteAdvert()
+    
     var userBlock = this.state.userAuthorized ?
       <UserPanel 
         onAuthorizationChanged = {this.handlerAuthorizationChanged.bind(this)}
