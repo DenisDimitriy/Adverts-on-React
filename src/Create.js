@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
+import { Link } from "react-router-dom";
 
 export default class Create extends Component {
+
+  author = JSON.parse(localStorage.getItem("userCurrent")).name
+  id = Math.floor(Math.random() * 1000)
+
   render() {
     //Если никто не авторизован, выдавать форму авторизации
     return (
@@ -10,7 +15,7 @@ export default class Create extends Component {
         <div>Автор:</div>
         <div><i>{JSON.parse(localStorage.getItem("userCurrent")).name}</i></div>
         
-        <form>
+        <form onSubmit={ (e) => e.preventDefault() }>
             <label>
                 Заголовок: <br/>
                 <input type="text" ref = { (titleInput) => this.titleInput = titleInput} />
@@ -19,7 +24,8 @@ export default class Create extends Component {
                 Описание: <br/>
                 <textarea ref = { (textInput) => this.textInput = textInput}/>
             </label> <br/>
-            <input type="submit" onClick={this.handlerCreate} value="Создать" />
+            
+            <Link to={"/$" + this.id} onClick={this.handlerCreate}>Создать</Link> <br/>
         </form>
         
       </div>
@@ -27,25 +33,6 @@ export default class Create extends Component {
   }
 
   handlerCreate = (e) => {
-    e.preventDefault();
-    var title = this.titleInput.value
-    var text = this.textInput.value
-
-    var dateNow = new Date();
-    var dateNowISO = dateNow.toISOString()
-    //var date = new Date(dateNowISO)
-
-    var author = JSON.parse(localStorage.getItem("userCurrent")).name
-    var id = "1357"
-
-    var advertNew = {
-      "id": id,
-      "author": author,
-      "date": dateNowISO,
-      "title": title,
-      "text": text
-    }
-
     var adverts
     const advertsJSON = localStorage.getItem("adverts");
 
@@ -53,6 +40,20 @@ export default class Create extends Component {
       adverts = []
     } else {
       adverts = JSON.parse(localStorage.getItem("adverts"))
+    }
+
+    var title = this.titleInput.value
+    var text = this.textInput.value
+
+    var dateNow = new Date();
+    var dateNowISO = dateNow.toISOString()
+
+    var advertNew = {
+      "id": this.id,
+      "author": this.author,
+      "date": dateNowISO,
+      "title": title,
+      "text": text
     }
 
     adverts.push(advertNew)

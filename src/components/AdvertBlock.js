@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import { Link } from "react-router-dom";
 
 export default class AdvertBlock extends Component {
   render() {
     var title = this.props.advert.title
     var author = this.props.advert.author
+    var id = this.props.advert.id
 
     var date = new Date(Date.parse(this.props.advert.date))
     var options = {
@@ -24,7 +26,11 @@ export default class AdvertBlock extends Component {
     if(this.props.advert.author === this.props.userAuthorized) {
       adv = 
       <div>
-        <h3>{title}<button>Kill</button></h3>
+        <h3>
+          {title}
+          <button>Kill</button>
+          <Link to={"/$" + id}>Просмотреть</Link> <br/>
+        </h3>
         <div><i>{author}</i></div>
         <div><i>{dateString}</i></div>
         <div>{text}</div>
