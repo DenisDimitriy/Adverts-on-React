@@ -93,7 +93,8 @@ export default class Create extends Component {
     
     for(var i=0; i<adverts.length; i++){
       if(adverts[i].id === +this.idEdit || adverts[i].id === this.idEdit){
-        adverts.splice(i,1,advertNew)
+        adverts.splice(i,1)
+        adverts.push(advertNew)
         break
       }
     }
