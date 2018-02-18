@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from './Home'
 import Create from './Create'
 import View from './View'
+import Edit from './Edit'
 
 /**Init localStorage
 
@@ -23,8 +24,9 @@ export default class App extends Component{
             <Router>
                 <div>
                     <Route exact path="/" component={Home} />
-                    <Route path="/edit" component={Create} />
+                    <Route path="/create" component={Create} />
                     <Route path="/$:id" component={View} />
+                    <Route path="/edit/$:id" component={Edit} />
                 </div>
             </Router>
         )

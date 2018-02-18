@@ -29,24 +29,25 @@ export default class AdvertBlock extends Component {
         <h3>
           {title}
         </h3>
-        <div>
-          <Link to={"/"} onClick={this.handlerDelete}>Kill</Link> <br/>
-          <Link to={"/$" + id}>Просмотреть</Link>
-        </div>
+        <div>{text}</div>
         <div><i>{author}</i></div>
         <div><i>{dateString}</i></div>
-        <div>{text}</div>
+        <div>
+          <Link to={"/$" + id}>Просмотреть</Link> <br/>
+          <Link to={"/edit/$" + id}>Редактировать</Link> <br/>
+          <Link to={"/"} onClick={this.handlerDelete}>Удалить</Link> <br/>
+        </div>
       </div>
     } else {
       adv = 
       <div>
         <h3>{title}</h3>
+        <div>{text}</div>
+        <div><i>{author}</i></div>
+        <div><i>{dateString}</i></div>
         <div>
           <Link to={"/$" + id}>Просмотреть</Link>
         </div>
-        <div><i>{author}</i></div>
-        <div><i>{dateString}</i></div>
-        <div>{text}</div>
       </div>
     }
     return (adv)
@@ -65,7 +66,7 @@ export default class AdvertBlock extends Component {
     }
     
     for(var i=0; i<adverts.length; i++){
-      if(adverts[i].id === +idDeleted){
+      if(adverts[i].id === +idDeleted || adverts[i].id === idDeleted){
         adverts.splice(i,1)
         break
       }

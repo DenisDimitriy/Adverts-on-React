@@ -3,33 +3,54 @@ import { Link } from "react-router-dom";
 
 export default class Create extends Component {
   idEdit = this.props.match.params.id
-
-  author = JSON.parse(localStorage.getItem("userCurrent")).name
-  id = Math.floor(Math.random() * 1000)
+  user = JSON.parse(localStorage.getItem("userCurrent")).name
 
   render() {
-    console.log (this.idEdit)
+    
+    var adverts
+    const advertsJSON = localStorage.getItem("adverts");
+
+    if(advertsJSON == null) {
+      return "No adverts to edit"
+    } else {
+      adverts = JSON.parse(advertsJSON)
+    }
+    
+    var advert
+    for(var i=0; i<adverts.length; i++){
+      if(adverts[i].id === +this.idEdit || adverts[i].id === this.idEdit){
+        advert = adverts[i]
+        break
+      }
+    }
+
     //Если никто не авторизован, выдавать форму авторизации
     return (
       <div>
-        <h2>Создать статью</h2>
+        <h2>Редактировать статью</h2>
         <hr/>
         <div>Автор:</div>
-        <div><i>{JSON.parse(localStorage.getItem("userCurrent")).name}</i></div>
+        <div><i>{this.user}</i></div>
         
         <form onSubmit={ (e) => e.preventDefault() }>
             <label>
                 Заголовок: <br/>
-                <input type="text" ref = { (titleInput) => this.titleInput = titleInput} />
+                <input type="text"
+                  defaultValue = {advert.title}
+                  ref = { (titleInput) => this.titleInput = titleInput}
+                />
             </label><br/>
             <label>
                 Описание: <br/>
-                <textarea ref = { (textInput) => this.textInput = textInput}/>
+                <textarea
+                  defaultValue = {advert.text}
+                  ref = { (textInput) => this.textInput = textInput}
+                />
             </label> <br/>
+            
         </form>
-        
         <div>
-          <Link to={"/$" + this.id} onClick={this.handlerCreate}>Создать</Link> <br/>
+          <Link to={"/$" + this.idEdit} onClick={this.handlerSave}>Сохранить</Link> <br/>
           <Link to={"/"}>Отмена</Link> <br/>
         </div>
         
@@ -37,10 +58,10 @@ export default class Create extends Component {
     )
   }
 
-  handlerCreate = (e) => {
+  handlerSave = (e) => {
+
     var title = this.titleInput.value
     var text = this.textInput.value
-
     
     if (title === "" || text === ""){
       e.preventDefault()
@@ -54,22 +75,29 @@ export default class Create extends Component {
     if(advertsJSON == null) {
       adverts = []
     } else {
-      adverts = JSON.parse(localStorage.getItem("adverts"))
+      adverts = JSON.parse(advertsJSON)
     }
 
     var dateNow = new Date();
     var dateNowISO = dateNow.toISOString()
 
+    console.log(this.idEdit)
     var advertNew = {
-      "id": this.id,
-      "author": this.author,
+      "id": this.idEdit,
+      "author": this.user,
       "date": dateNowISO,
       "title": title,
       "text": text
     }
 
-    adverts.push(advertNew)
     
+    for(var i=0; i<adverts.length; i++){
+      if(adverts[i].id === +this.idEdit || adverts[i].id === this.idEdit){
+        adverts.splice(i,1,advertNew)
+        break
+      }
+    }
+   
     var advertsString = JSON.stringify(adverts);
     localStorage.setItem("adverts", advertsString);
   }

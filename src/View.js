@@ -9,11 +9,17 @@ export default class Create extends Component {
     const advertsJSON = localStorage.getItem("adverts");
 
     if(advertsJSON == null) {
-      return "No adverts to view"
+      return (
+        <div>
+          <div>
+            <Link to={"/"}>На главную</Link> <br/>
+          </div>
+          "No adverts to view"
+        </div>
+      )
     } else {
       adverts = JSON.parse(advertsJSON)
     }
-
     
     var userCurrent
     const userCurrentJSON = localStorage.getItem("userCurrent");
@@ -24,27 +30,65 @@ export default class Create extends Component {
       userCurrent = JSON.parse(userCurrentJSON)
     }
 
+
+
     var advert
 
     for(var i=0; i<adverts.length; i++){
-      if(adverts[i].id === +this.id){
+      
+      if(adverts[i].id === this.id || adverts[i].id === +this.id){
         if(userCurrent && adverts[i].author === userCurrent.name){
+
+          var date = new Date(Date.parse(adverts[i].date))
+          var options = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            weekday: 'long',
+            timezone: 'UTC',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric'
+          };
+          var dateString = date.toLocaleString("ru", options)
+
           advert = 
             <div>
+              <div>
+                <Link to={"/"}>На главную</Link> <br/>
+              </div>
               <h3>{adverts[i].title}</h3>
-              <div><i>{adverts[i].author}</i></div>
-              <div><i>{adverts[i].date}</i></div>
               <div>{adverts[i].text}</div>
-              <div><Link to={"/"} onClick={this.handlerDelete}>Kill</Link> <br/></div>
+              <div><i>{adverts[i].author}</i></div>
+              <div><i>{dateString}</i></div>
+              <Link to={"/edit/$" + this.id}>Редактировать</Link> <br/>
+              <div><Link to={"/"} onClick={this.handlerDelete}>Удалить</Link> <br/></div>
             </div>
           break
         } else {
+
+          date = new Date(Date.parse(adverts[i].date))
+          options = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            weekday: 'long',
+            timezone: 'UTC',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric'
+          };
+          dateString = date.toLocaleString("ru", options)
+
           advert = 
             <div>
+              <div>
+                <Link to={"/"}>На главную</Link> <br/>
+              </div>
               <h3>{adverts[i].title}</h3>
-              <div><i>{adverts[i].author}</i></div>
-              <div><i>{adverts[i].date}</i></div>
               <div>{adverts[i].text}</div>
+              <div><i>{adverts[i].author}</i></div>
+              <div><i>{dateString}</i></div>
             </div>
           break
         }
