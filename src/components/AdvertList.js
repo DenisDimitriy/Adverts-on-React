@@ -52,11 +52,14 @@ export default class AdvertList extends Component {
         return (
             <div>
                 <h3><i>Список объявлений</i></h3>
-                <button onClick={()=>this.setState({page: --pageCurrent})}>Назад</button>
-                {pageCurrent}/{countOfPages}
-                <button onClick={()=>this.setState({page: ++pageCurrent})}>Вперед</button>
+                <div className="pagination">
+                    <button className="btn btn-default" onClick={()=>this.setState({page: --pageCurrent})}>Назад</button>
+                    {pageCurrent}/{countOfPages}
+                    <button className="btn btn-default" onClick={()=>this.setState({page: ++pageCurrent})}>Вперед</button>
+                </div>
                 {advertArray}                
             </div>
         )
     }
+
 }

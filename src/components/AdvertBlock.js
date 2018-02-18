@@ -25,28 +25,26 @@ export default class AdvertBlock extends Component {
     var adv
     if(this.props.advert.author === this.props.userAuthorized) {
       adv = 
-      <div>
+      <div className="advert-block">
         <h3>
           {title}
         </h3>
         <div>{text}</div>
         <div><i>{author}</i></div>
         <div><i>{dateString}</i></div>
-        <div>
-          <Link to={"/$" + id}>Просмотреть</Link> <br/>
-          <Link to={"/edit/$" + id}>Редактировать</Link> <br/>
-          <Link to={"/"} onClick={this.handlerDelete}>Удалить</Link> <br/>
-        </div>
+        <Link className="btn btn-primary" to={"/$" + id}>Просмотреть</Link>
+        <Link className="btn btn-primary" to={"/edit/$" + id}>Редактировать</Link>
+        <Link className="btn btn-danger"  to={"/"} onClick={this.handlerDelete}>Удалить</Link>
       </div>
     } else {
       adv = 
-      <div>
+      <div className="advert-block">
         <h3>{title}</h3>
         <div>{text}</div>
         <div><i>{author}</i></div>
         <div><i>{dateString}</i></div>
         <div>
-          <Link to={"/$" + id}>Просмотреть</Link>
+          <Link className="btn btn-primary" to={"/$" + id}>Просмотреть</Link>
         </div>
       </div>
     }

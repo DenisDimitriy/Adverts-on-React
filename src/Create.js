@@ -11,7 +11,7 @@ export default class Create extends Component {
     console.log (this.idEdit)
     //Если никто не авторизован, выдавать форму авторизации
     return (
-      <div>
+      <div className="container">
         <h2>Создать статью</h2>
         <hr/>
         <div>Автор:</div>
@@ -27,12 +27,8 @@ export default class Create extends Component {
                 <textarea ref = { (textInput) => this.textInput = textInput}/>
             </label> <br/>
         </form>
-        
-        <div>
-          <Link to={"/$" + this.id} onClick={this.handlerCreate}>Создать</Link> <br/>
-          <Link to={"/"}>Отмена</Link> <br/>
-        </div>
-        
+        <Link className="btn btn-success" to={"/$" + this.id} onClick={this.handlerCreate}>Создать</Link> <br/>
+        <Link className="btn btn-danger" to={"/"}>Отмена</Link> <br/>
       </div>
     )
   }

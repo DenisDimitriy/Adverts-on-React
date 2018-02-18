@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Authorization from './components/Authorization'
 import UserPanel from './components/UserPanel'
 import AdvertList from './components/AdvertList'
+import 'bootstrap/dist/css/bootstrap.css'
 
 export default class Home extends Component {
   constructor (props) {
@@ -73,8 +74,8 @@ export default class Home extends Component {
       />
 
     return (
-      <div>
-        <h2>Главная страница</h2>
+      <div className="container">
+        <h2>Доска обявлений</h2>
         <hr/>
         {userBlock}
         <hr/>

@@ -8,8 +8,8 @@ export default class UserPanel extends Component {
         <h3><i>Панель пользователя:</i></h3>
         <div>
             <div>{JSON.parse(localStorage.getItem("userCurrent")).name}</div>
-            <Link to="/create">Create Ad</Link> <br/>
-            <Link to="/" onClick={this.handlerLogout}>Выйти</Link>
+            <Link className="btn btn-success" to="/create">Создать</Link> <br/>
+            <Link className="btn btn-danger" to="/" onClick={this.handlerLogout}>Выйти</Link>
         </div>
       </div>
     )

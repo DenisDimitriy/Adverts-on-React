@@ -55,14 +55,14 @@ export default class Create extends Component {
           advert = 
             <div>
               <div>
-                <Link to={"/"}>На главную</Link> <br/>
+                <Link className="btn btn-primary" to={"/"}>На главную</Link> <br/>
               </div>
               <h3>{adverts[i].title}</h3>
               <div>{adverts[i].text}</div>
               <div><i>{adverts[i].author}</i></div>
               <div><i>{dateString}</i></div>
-              <Link to={"/edit/$" + this.id}>Редактировать</Link> <br/>
-              <div><Link to={"/"} onClick={this.handlerDelete}>Удалить</Link> <br/></div>
+              <Link className="btn btn-primary" to={"/edit/$" + this.id}>Редактировать</Link>
+              <Link className="btn btn-danger" to={"/"} onClick={this.handlerDelete}>Удалить</Link>
             </div>
           break
         } else {
@@ -83,7 +83,7 @@ export default class Create extends Component {
           advert = 
             <div>
               <div>
-                <Link to={"/"}>На главную</Link> <br/>
+                <Link className="btn btn-primary"  to={"/"}>На главную</Link> <br/>
               </div>
               <h3>{adverts[i].title}</h3>
               <div>{adverts[i].text}</div>
@@ -96,7 +96,7 @@ export default class Create extends Component {
     }
 
     return (
-      <div>
+      <div className="container">
         <h2>Просмотр статьи</h2>
         <hr/>
         {advert}

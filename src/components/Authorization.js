@@ -4,17 +4,17 @@ export default class Authorization extends Component {
   render() {
     return (
       <div>
-        <h3>Авторизация</h3>
+        <h3><i>Авторизация</i></h3>
         <form>
             <label>
                 Логин: <br/>
-                <input type="text" ref = { (userNameInput) => this.userNameInput = userNameInput} />
+                <input className="input-login" type="text" ref = { (userNameInput) => this.userNameInput = userNameInput} />
             </label><br/>
             <label>
                 Пароль: <br/>
-                <input type="text" ref = { (passwordInput) => this.passwordInput = passwordInput} />
+                <input className="input-login" type="text" ref = { (passwordInput) => this.passwordInput = passwordInput} />
             </label> <br/>
-            <input type="submit" onClick={this.handlerSubmit} value="Войти"/>
+            <input className="btn btn-info" type="submit" onClick={this.handlerSubmit} value="Войти"/>
         </form>
       </div>
     )

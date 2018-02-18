@@ -24,9 +24,8 @@ export default class Create extends Component {
       }
     }
 
-    //Если никто не авторизован, выдавать форму авторизации
     return (
-      <div>
+      <div className="container">
         <h2>Редактировать статью</h2>
         <hr/>
         <div>Автор:</div>
@@ -49,11 +48,8 @@ export default class Create extends Component {
             </label> <br/>
             
         </form>
-        <div>
-          <Link to={"/$" + this.idEdit} onClick={this.handlerSave}>Сохранить</Link> <br/>
-          <Link to={"/"}>Отмена</Link> <br/>
-        </div>
-        
+        <Link className="btn btn-primary" to={"/$" + this.idEdit} onClick={this.handlerSave}>Сохранить</Link> <br/>
+        <Link className="btn btn-danger" to={"/"}>Отмена</Link> <br/>
       </div>
     )
   }
