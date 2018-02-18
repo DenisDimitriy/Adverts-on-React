@@ -41,6 +41,9 @@ export default class AdvertBlock extends Component {
       adv = 
       <div>
         <h3>{title}</h3>
+        <div>
+          <Link to={"/$" + id}>Просмотреть</Link>
+        </div>
         <div><i>{author}</i></div>
         <div><i>{dateString}</i></div>
         <div>{text}</div>
@@ -48,7 +51,6 @@ export default class AdvertBlock extends Component {
     }
     return (adv)
   }
-
 
   handlerDelete = () => {
     var idDeleted = this.props.advert.id
@@ -73,6 +75,4 @@ export default class AdvertBlock extends Component {
     localStorage.setItem("adverts", advertsString);
     
   }
-
-
 }

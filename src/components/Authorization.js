@@ -5,7 +5,7 @@ export default class Authorization extends Component {
     return (
       <div>
         <h3>Авторизация</h3>
-        <form action="/">
+        <form>
             <label>
                 Логин: <br/>
                 <input type="text" ref = { (userNameInput) => this.userNameInput = userNameInput} />
@@ -19,9 +19,9 @@ export default class Authorization extends Component {
       </div>
     )
   }
-
   
   handlerSubmit = (e) => {
+    e.preventDefault()
     var userName = this.userNameInput.value;
     var userPassword = this.passwordInput.value;
     /**1 Проверка пользователя

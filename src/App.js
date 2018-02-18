@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from './Home'
 import Create from './Create'
 import View from './View'
@@ -23,11 +23,8 @@ export default class App extends Component{
             <Router>
                 <div>
                     <Route exact path="/" component={Home} />
-                    <Route path="/:option/$:id" component={Home} />
                     <Route path="/edit" component={Create} />
                     <Route path="/$:id" component={View} />
-                    <Redirect from='/delete/$' to='/'/>
-                    <Redirect from='/:option/$:id' to='/'/>
                 </div>
             </Router>
         )
@@ -37,4 +34,10 @@ export default class App extends Component{
 /*
 <Redirect from='/delete/$:idDeleted' to='/'/>
 <Route path="/delete/$:idDeleted" component={Home} />
+
+
+<Redirect from='/delete/$:id' to='/'/>
+<Redirect from='/logout' to='/'/>
+<Route path="/:option" component={Home} />
+<Route path="/:option/$:id" component={Home} />
 */

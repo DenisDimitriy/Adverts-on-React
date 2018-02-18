@@ -19,6 +19,7 @@ export default class Home extends Component {
     })
   }
 
+  /*
   deleteAdvert = () => {
     var idDeleted = this.props.match.params.id
 
@@ -42,14 +43,28 @@ export default class Home extends Component {
     localStorage.setItem("adverts", advertsString);
     
   }
+  
+  logout = () => {    
+    localStorage.removeItem("userCurrent");
+    this.setState ({
+      userAuthorized: false
+    })
+  }
+  */
 
   render() {
+    /*
     if(this.props.match.params.option === "delete"){
-      console.log("delete")
       this.deleteAdvert()
     }
+    
+    if(this.props.match.params.option === "logout"){
+      console.log("logout")
+      this.logout()
+    }
+    */
 
-    var userBlock = this.state.userAuthorized ?
+    var userBlock = (this.state.userAuthorized) ?
       <UserPanel 
         onAuthorizationChanged = {this.handlerAuthorizationChanged.bind(this)}
       /> : 
