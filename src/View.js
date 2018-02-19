@@ -10,11 +10,11 @@ export default class Create extends Component {
 
     if(advertsJSON == null) {
       return (
-        <div>
+        <div className="container">
           <div>
             <Link to={"/"}>На главную</Link> <br/>
           </div>
-          "No adverts to view"
+          Нет объявлений для просмотра. Пожалуйста, авторизуйтесь и добавьте объявления на главной странице.
         </div>
       )
     } else {

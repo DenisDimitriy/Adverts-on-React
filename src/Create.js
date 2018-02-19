@@ -2,14 +2,22 @@ import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 
 export default class Create extends Component {
-  idEdit = this.props.match.params.id
-
-  author = JSON.parse(localStorage.getItem("userCurrent")).name
-  id = Math.floor(Math.random() * 1000)
 
   render() {
-    console.log (this.idEdit)
-    //Если никто не авторизован, выдавать форму авторизации
+  var userCurrent = localStorage.getItem("userCurrent")
+  if (userCurrent == null) {
+    return (
+      <div className="container">
+        <div>
+          <Link to={"/"}>На главную</Link> <br/>
+        </div>
+        Пользователь не авторизован. Пожалуйста, авторизуйтесь.
+      </div>
+    )
+  }
+  this.author = JSON.parse(userCurrent).name
+  this.id = Math.floor(Math.random() * 10000)
+    
     return (
       <div className="container">
         <h2>Создать статью</h2>

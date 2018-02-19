@@ -3,10 +3,23 @@ import { Link } from "react-router-dom";
 
 export default class Create extends Component {
   idEdit = this.props.match.params.id
-  user = JSON.parse(localStorage.getItem("userCurrent")).name
+  //user = JSON.parse(localStorage.getItem("userCurrent")).name
 
   render() {
     
+    var userCurrent = localStorage.getItem("userCurrent")
+    if (userCurrent == null) {
+      return (
+        <div className="container">
+          <div>
+            <Link to={"/"}>На главную</Link> <br/>
+          </div>
+          Пользователь не авторизован. Пожалуйста, авторизуйтесь.
+        </div>
+      )
+    }
+    this.user = JSON.parse(userCurrent).name
+
     var adverts
     const advertsJSON = localStorage.getItem("adverts");
 
