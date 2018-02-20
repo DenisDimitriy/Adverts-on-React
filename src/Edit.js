@@ -18,8 +18,8 @@ export default class Create extends Component {
         </div>
       )
     }
-    this.user = JSON.parse(userCurrent).name
 
+    this.user = JSON.parse(userCurrent).name
     var adverts
     const advertsJSON = localStorage.getItem("adverts");
 
@@ -35,6 +35,18 @@ export default class Create extends Component {
         advert = adverts[i]
         break
       }
+    }
+    
+
+    if (this.user !== advert.author) {
+      return (
+        <div className="container">
+          <div>
+            <Link to={"/"}>На главную</Link> <br/>
+          </div>
+          Авторство статьи Вам не пренадлежит. Пожалуйста, авторизуйтесь под учетной записью автора статьи.
+        </div>
+      )
     }
 
     return (
