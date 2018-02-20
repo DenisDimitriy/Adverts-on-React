@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import AdvertBlock from './AdvertBlock'
+import Pagination from './Pagination'
 
 export default class AdvertList extends Component {
     state = {
@@ -16,9 +17,19 @@ export default class AdvertList extends Component {
         )
 
         const advertsLS = JSON.parse(advertsJSON);
-        advertsLS.reverse()
+
+        if(advertsLS.length == null) return (
+            <div>
+                <h3><i>Список объявлений</i></h3>
+                <div>Объявления не найдены</div>
+            </div>
+        )
+
+        var advertsRevers = advertsLS.reverse()
 
         var countOfPages = Math.ceil(advertsLS.length / 5)
+
+        /** Начало пагинации */
 
         var pageCurrent = this.state.page
         if (pageCurrent < 1){
@@ -42,6 +53,8 @@ export default class AdvertList extends Component {
 
         var advertsView = advertsLS.slice(indexBegin, indexEnd)
 
+        /**Конец пагинации */
+
         const adverts = advertsView;
 
         const advertArray = adverts.map ((advert, index) =>
@@ -57,9 +70,13 @@ export default class AdvertList extends Component {
                     {pageCurrent}/{countOfPages}
                     <button className="btn btn-default" onClick={()=>this.setState({page: ++pageCurrent})}>Вперед</button>
                 </div>
-                {advertArray}                
+                <Pagination advertsRevers={advertsRevers} onPageChange={this.handlerPageChange.bind(this)}/>
+                {advertArray}
             </div>
         )
     }
 
+    handlerPageChange = (adverts, page) => {
+        console.log(page)
+    }
 }

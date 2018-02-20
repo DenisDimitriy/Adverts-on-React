@@ -20,50 +20,7 @@ export default class Home extends Component {
     })
   }
 
-  /*
-  deleteAdvert = () => {
-    var idDeleted = this.props.match.params.id
-
-    var adverts
-    const advertsJSON = localStorage.getItem("adverts");
-
-    if(advertsJSON == null) {
-      return
-    } else {
-      adverts = JSON.parse(localStorage.getItem("adverts"))
-    }
-    
-    for(var i=0; i<adverts.length; i++){
-      if(adverts[i].id === +idDeleted && adverts[i].author === this.state.userAuthorized){
-        adverts.splice(i,1)
-        break
-      }
-    }
-
-    var advertsString = JSON.stringify(adverts);
-    localStorage.setItem("adverts", advertsString);
-    
-  }
-  
-  logout = () => {    
-    localStorage.removeItem("userCurrent");
-    this.setState ({
-      userAuthorized: false
-    })
-  }
-  */
-
   render() {
-    /*
-    if(this.props.match.params.option === "delete"){
-      this.deleteAdvert()
-    }
-    
-    if(this.props.match.params.option === "logout"){
-      console.log("logout")
-      this.logout()
-    }
-    */
 
     var userBlock = (this.state.userAuthorized) ?
       <UserPanel 
