@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 export default class Create extends Component {
   idEdit = this.props.match.params.id
-  //user = JSON.parse(localStorage.getItem("userCurrent")).name
 
   render() {
     

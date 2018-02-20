@@ -6,10 +6,8 @@ export default class AdvertList extends Component {
     }
 
     render() {
-        var advertsRevers = this.props.advertsRevers
+        var countOfPages = this.props.countOfPages
       
-        var countOfPages = Math.ceil(advertsRevers.length / 5)
-
         this.pageCurrent = this.state.page
         if (this.pageCurrent < 1){
             this.pageCurrent = 1
@@ -24,14 +22,6 @@ export default class AdvertList extends Component {
             })
         }
 
-        var indexBegin = this.pageCurrent*5 - 5
-        var indexEnd = indexBegin + 5
-        if (indexEnd > advertsRevers.length){
-            indexEnd = advertsRevers.length
-        }
-
-        this.advertsView = advertsRevers.slice(indexBegin, indexEnd)
-
         return (
             <div className="pagination">
                 <button className="btn btn-default" onClick={()=>this.handlerPaginationClick("backward")}>Назад</button>
@@ -44,13 +34,6 @@ export default class AdvertList extends Component {
     handlerPaginationClick = (option) => {
         if(option === "backward") this.setState({page: --this.pageCurrent})
         if(option === "forward") this.setState({page: ++this.pageCurrent})
-        this.props.onPageChange(this.advertsView, this.pageCurrent)
+        this.props.onPageChange(this.pageCurrent)
     }
-
 }
-/*
- onClick={()=>this.props.onPageChange("backward")}
-                <button className="btn btn-default" onClick={()=>this.setState({page: --this.pageCurrent})}>Назад</button>
-                {this.pageCurrent}/{countOfPages}
-                <button className="btn btn-default" onClick={()=>this.setState({page: ++this.pageCurrent})}>Вперед</button>
-*/

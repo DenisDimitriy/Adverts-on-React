@@ -29,8 +29,6 @@ export default class AdvertList extends Component {
 
         var countOfPages = Math.ceil(advertsLS.length / 5)
 
-        /** Начало пагинации */
-
         var pageCurrent = this.state.page
         if (pageCurrent < 1){
             pageCurrent = 1
@@ -53,8 +51,6 @@ export default class AdvertList extends Component {
 
         var advertsView = advertsLS.slice(indexBegin, indexEnd)
 
-        /**Конец пагинации */
-
         const adverts = advertsView;
 
         const advertArray = adverts.map ((advert, index) =>
@@ -66,17 +62,16 @@ export default class AdvertList extends Component {
             <div>
                 <h3><i>Список объявлений</i></h3>
                 <div className="pagination">
-                    <button className="btn btn-default" onClick={()=>this.setState({page: --pageCurrent})}>Назад</button>
-                    {pageCurrent}/{countOfPages}
-                    <button className="btn btn-default" onClick={()=>this.setState({page: ++pageCurrent})}>Вперед</button>
+                    <Pagination countOfPages={countOfPages} onPageChange={this.handlerPageChange.bind(this)}/>
                 </div>
-                <Pagination advertsRevers={advertsRevers} onPageChange={this.handlerPageChange.bind(this)}/>
                 {advertArray}
             </div>
         )
     }
 
-    handlerPageChange = (adverts, page) => {
-        console.log(page)
+    handlerPageChange = (page) => {
+        this.setState({
+            page: page
+        })
     }
 }

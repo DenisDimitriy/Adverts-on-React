@@ -5,16 +5,6 @@ import Create from './Create'
 import View from './View'
 import Edit from './Edit'
 
-/**Init localStorage
-
-import adverts from './adverts'
-
-var advertsString = JSON.stringify(adverts);
-localStorage.removeItem("adverts");
-localStorage.setItem("adverts", advertsString);
-
-*/
-
 /** Router from https://reacttraining.com/react-router/web/example/basic */
 
 export default class App extends Component{
@@ -32,14 +22,3 @@ export default class App extends Component{
         )
     }
 }
-
-/*
-<Redirect from='/delete/$:idDeleted' to='/'/>
-<Route path="/delete/$:idDeleted" component={Home} />
-
-
-<Redirect from='/delete/$:id' to='/'/>
-<Redirect from='/logout' to='/'/>
-<Route path="/:option" component={Home} />
-<Route path="/:option/$:id" component={Home} />
-*/
