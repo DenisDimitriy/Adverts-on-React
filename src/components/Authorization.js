@@ -12,7 +12,7 @@ export default class Authorization extends Component {
             </label><br/>
             <label>
                 Пароль: <br/>
-                <input className="input-login" type="text" ref = { (passwordInput) => this.passwordInput = passwordInput} />
+                <input className="input-login" type="password" ref = { (passwordInput) => this.passwordInput = passwordInput} />
             </label> <br/>
             <input className="btn btn-info" type="submit" onClick={this.handlerSubmit} value="Войти"/>
         </form>
