@@ -25,7 +25,7 @@ export default class AdvertList extends Component {
             </div>
         )
 
-        var advertsRevers = advertsLS.reverse()
+        advertsLS.reverse()
 
         var countOfPages = Math.ceil(advertsLS.length / 5)
 
